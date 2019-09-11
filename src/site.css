@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Livvic&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+	body {
+		margin-top: 4.5em;
+	}
+
+	.text {
+		font-family: 'Livvic';
+	}
+
+	.high-text {
+		color: #13a378;
+		font-family: 'Livvic';
+	}
+
+	.destaque-text {
+		color: #08ec2e;
+		font-family: 'Livvic';
+	}
+
+	.low-text {
+		color: #70757c;
+		font-family: 'Livvic';
+	}
+
+	.big-text {
+		font-size: 3.5em;
+	}
+
+	.button {
+		  position: relative;
+		  border: 0px;
+		  padding: 8px 16px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 8px 6px;
+		  border-radius: 12px;
+		  -webkit-transition-duration: 0.4s; /* Safari */
+		  transition-duration: 0.4s;
+		  cursor: pointer;
+		  font-family: 'Muli';
+		}
+
+		.button1 {
+		  background-color: #13a378;
+		  color: white; 
+		}
+
+		.button1:hover {
+		  background-color: white;
+		  color: #13a378;
+		  border: 1px solid #13a378;
+		}
+
+		.button2 {
+		  background-color: #08ec2e;
+		  color: white; 
+		}
+
+		.button2:hover {
+		  background-color: white;
+		  color: #08ec2e;
+		  border: 1px solid #08ec2e;
+		}  
+
+		.button3 {
+		  background-color: #690a62;
+		  color: white; 
+		}
+
+		.button3:hover {
+		  background-color: white;
+		  color: #690a62;
+		  border: 1px solid #690a62;
+		}
+
+		.fixed-div {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0;
+		   width: 100%;
+		}
+
+		.table-site {
+			margin-top: 1em;
+			font-family: "Muli";
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		.table-site td, .table-sites th {
+		  border: 1px solid #ddd;
+		  padding: 0.5em;
+		}
+
+		.table-site tr:nth-child(even){background-color:#d4fae8;}
+
+		/*.table-site tr:hover {background-color: #ddd;}*/
+
+		.table-site th {
+		  padding-top: 0.6em;
+		  padding-bottom: 0.6em;
+		  padding-left: 0.8em;
+		  padding-right: 0.8em;
+		  text-align: center;
+		  background-color:#13a378;
+		  color: white;
+		}
+
+		.hr-divide {
+			border-width: 0.3em; 
+			border-color: #13a378
+		}
+
+		.hr-divide-light {
+			border-width: 0.2em; 
+			border-color: #08ec2e;
+		}

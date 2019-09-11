@@ -9,13 +9,18 @@
 		font-family: 'Livvic';
 	}
 
+
+	label {
+		font-size: 1em;
+	}
+
 	.high-text {
-		color: #13a378;
+		color: #3486eb;
 		font-family: 'Livvic';
 	}
 
 	.destaque-text {
-		color: #08ec2e;
+		color: #ed1f1f;
 		font-family: 'Livvic';
 	}
 
@@ -45,25 +50,25 @@
 		}
 
 		.button1 {
-		  background-color: #13a378;
+		  background-color: #3486eb;
 		  color: white; 
 		}
 
 		.button1:hover {
 		  background-color: white;
-		  color: #13a378;
-		  border: 1px solid #13a378;
+		  color: #3486eb;
+		  border: 1px solid #3486eb;
 		}
 
 		.button2 {
-		  background-color: #08ec2e;
+		  background-color: #ed1f1f;
 		  color: white; 
 		}
 
 		.button2:hover {
 		  background-color: white;
-		  color: #08ec2e;
-		  border: 1px solid #08ec2e;
+		  color: #ed1f1f;
+		  border: 1px solid #ed1f1f;
 		}  
 
 		.button3 {
@@ -106,16 +111,16 @@
 		  padding-left: 0.8em;
 		  padding-right: 0.8em;
 		  text-align: center;
-		  background-color:#13a378;
+		  background-color:#3486eb;
 		  color: white;
 		}
 
 		.hr-divide {
 			border-width: 0.3em; 
-			border-color: #13a378
+			border-color: #3486eb
 		}
 
 		.hr-divide-light {
 			border-width: 0.2em; 
-			border-color: #08ec2e;
+			border-color: #ed1f1f;
 		}

@@ -24,11 +24,11 @@ include('src/meta.php');
 				<h2 class="high-text">Edital de <i><span class="destaque-text">inscrições</span></i> 2019</h2>
 			</div>
 			<div class="col-sm-2">
-				<a href="" target="blank_"><button class="button button1">Consulte Edital</button></a>
+			<a href="http://www.taubate.sp.gov.br/wp-content/uploads/2019/07/EDITAL-DE-PROCESSO-SELETIVO-EAFI-2019.pdf" target="blank_"><button class="button button1">Consulte Edital</button></a>
 			</div>
 			<div class="col-sm-5">
 				<a href="inscricao.php"><button class="button button2">INSCREVA-SE</button></a>
-				<h6 class="text">As inscrições pro EAFI 2019 se encerraram em 30/08/2019</h6>
+				<h6 class="text">As inscrições para o EAFI 2019 se encerraram em 30/08/2019</h6>
 			</div>
 		</div>
 

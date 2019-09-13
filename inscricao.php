@@ -12,6 +12,161 @@
         $('#cpf').mask('000.000.000-00');
         $('#telefone').mask('(00) 00000-0000');
     </script>
+    <script>
+            function carregaModalidade (sexo) {
+                if(sexo == 'M') {
+                    document.getElementById('modalidadeMasculina').disabled = false;
+                    document.getElementById('modalidadeFeminina').disabled = true;
+                } else if (sexo == 'F') {
+                    document.getElementById('modalidadeFeminina').disabled = false;
+                    document.getElementById('modalidadeMasculina').disabled = true;
+                } else {
+                    return;
+                }
+            }
+
+            function show(input) {
+                    input.disabled = false;
+            }
+
+            function hide(input) {
+                    input.disabled = true;
+                    input.value = '';
+            }
+
+            function meu_callback(conteudo) {
+                if (!("erro" in conteudo)) {
+                    document.getElementById('endereco').value=(conteudo.logradouro);
+                    document.getElementById('bairro').value=(conteudo.bairro);
+                    document.getElementById('cidade').value=(conteudo.localidade);
+                }
+                else {
+                    //CEP não Encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            }
+        
+            function pesquisacep(valor) {
+                var cep = valor.replace(/\D/g, '');
+                if (cep != "") {
+                    var validacep = /^[0-9]{8}$/;
+                    if(validacep.test(cep)) {
+                        document.getElementById('endereco').value="...";
+                        document.getElementById('bairro').value="...";
+                        document.getElementById('cidade').value="...";
+
+                        var script = document.createElement('script');
+
+                        script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                        document.body.appendChild(script);
+
+                    } 
+                    else {
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } 
+                else {
+                    limpa_formulário_cep();
+                }
+            };
+
+            function limpa_formulário_cep() {
+                    document.getElementById('endereco').value=("");
+                    document.getElementById('bairro').value=("");
+                    document.getElementById('cidade').value=("");
+            }
+
+            function valida() {
+                var nome = document.getElementById('nome').value;
+                var rg = document.getElementById('rg').value;
+                var sexo = document.getElementById('sexo').value;
+                var email = document.getElementById('email').value;
+                var nascimento = document.getElementById('nascimento').value;
+                    var ano = nascimento.substring(0, 4);
+                var telefone = document.getElementById('telefone').value;
+                var escola = document.getElementById('escola').value;
+                var anoescolar = document.getElementById('anoescolar').value;
+                var endereco = document.getElementById('endereco').value;
+                var numero = document.getElementById('numero').value;
+                var bairro = document.getElementById('bairro').value;
+                var cidade = document.getElementById('cidade').value;
+                var resp1 = document.getElementById('resp1').value;
+                var resp = document.getElementById('resp').value;
+                var parentesco = document.getElementById('parentesco').value;
+                var modalidadeMasc = document.getElementById('modalidadeMasculina').value;
+                var modalidadeFem = document.getElementById('modalidadeFeminina').value;
+
+                if(nome == '') {
+                    alert('Insira o nome completo do candidato');
+                    return;
+                } else if (rg == '' || rg == '00000000' || rg.length < 8 || rg == '000000000') {
+                    alert('RG inválido. O RG deve ser do candidato');
+                    return;
+                } else if (sexo == 'null') {
+                    alert('Selecione o sexo');
+                    return;
+                } else if (email == '') {
+                    alert('Insira um e-mail');
+                    return;
+                } else if (telefone == '') {
+                    alert('Insira o telefone de contato');
+                    return;
+                } else if (nascimento == '') {
+                    alert('Data de nascimento inválida');
+                    return;
+                } else if (escola == 'null') {
+                    alert('Selecione a escola do candidato');
+                    return;
+                } else if (anoescolar == '') {
+                    alert('Insira o ano escolar do candidato');
+                    return;
+                } else if (endereco == '' || numero == '' || bairro == '' || cidade == '') {
+                    alert('Preencha todos os campos do endereço (apenas o CEP não é obrigatório');
+                    return;
+                } else if (resp1 == '') {
+                    alert('Insira ao menos um responsável do candidato (pai/mãe)');
+                    return;
+                } else if (resp == '') {
+                    alert('É necessário inserir o nome completo de quem acompanhará o candidato');
+                    return;
+                } else if (parentesco == '') {
+                    alert('Insira o parentesco do responsável');
+                    return;
+                } else if ((sexo == 'M' && modalidadeMasc == 'null') || (sexo == 'F' && modalidadeFem == 'null')) {
+                    alert('Selecione a modalidade que o candidato irá concorrer');
+                    return;
+                } else {
+                    if (sexo == 'M') {
+                        // if (modalidadeMasc == 'Vôlei' && (ano < '2006' && ano > '2009')) {
+                        //     alert('A modalidade selecionada não está disponível para o ano de nascimento do candidato');
+                        //     return;
+                        // }
+                        // if (modalidadeMasc == 'Vôlei' && (ano < '2006' && ano > '2009')) {
+                        //     alert('A modalidade selecionada não está disponível para o ano de nascimento do candidato');
+                        //     return;
+                        // }
+                        //IR REPETINDO ESSE IF PARA TODAS AS MODALIDADES MASCULINAS
+                    } else if (sexo == 'F') {
+                        // if (modalidadeFem == 'Vôlei' && (ano < '2006' && ano > '2009')) {
+                        //     alert('A modalidade selecionada não está disponível para o ano de nascimento do candidato');
+                        //     return;
+                        // }
+                        // if (modalidadeFem == 'Vôlei' && (ano < '2006' && ano > '2009')) {
+                        //     alert('A modalidade selecionada não está disponível para o ano de nascimento do candidato');
+                        //     return;
+                        // }
+                        //IR REPETINDO ESSE IF PARA TODAS AS MODALIDADES FEMININAS
+                    } else {
+                        alert('Erro na validação dos dados, confira os campos do formulário');
+                        return;
+                    }
+                }
+                document.getElementById('form').submit();
+            }
+        </script>
 </head>
 <body style="margin-top: 0em;">
 <div class="container-fluid">
@@ -35,25 +190,29 @@
 
     <div class="row">
         <div class="col-sm-3">
-        <form method="POST" action="database/empresa.php?novaEmpresa=true" id="form">
+        <form method="POST" action="database/inscricao.php?nova=true" id="form">
             <label for="nome" class="text">Nome completo do candidato *</label>
             <input type="text" name="nome" id="nome" class="form-control form-control-sm" maxlength="80" required="">
         </div>
         <div class="col-sm-2">
             <label for="rg" class="text">RG *</label>
-            <input type="text" name="rg" id="rg" class="form-control form-control-sm" maxlength="12">
+            <input type="text" name="rg" id="rg" class="form-control form-control-sm" maxlength="12" placeholder="Apenas números">
         </div>
         <div class="col-sm-2">
             <label for="sexo" class="text">Sexo *</label>
-            <select class="form-control form-control-sm" name="sexo" id="sexo" required="">
+            <select class="form-control form-control-sm" name="sexo" id="sexo" required="" onblur="carregaModalidade(this.value);">
                 <option value="null" disabled="" selected="">-- Selecione --</option>
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
             </select>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <label for="nascimento" class="text">Data de nascimento *</label>
             <input type="date" name="nascimento" id="nascimento" class="form-control form-control-sm" maxlength="10">
+        </div>
+        <div class="col-sm-2">
+            <label for="email" class="text">E-mail *</label>
+            <input type="email" name="email" id="email" class="form-control form-control-sm" maxlength="120">
         </div>
     </div>
     <div class="row">
@@ -123,7 +282,7 @@
     <div class="row">
         <div class="col-sm-2">
             <label for="cep" class="text">CEP *</label>
-            <input type="text" name="cep" id="cep" class="form-control form-control-sm" required="" maxlength="8" placeholder="Apenas números">
+            <input type="text" name="cep" id="cep" class="form-control form-control-sm" required="" maxlength="8" placeholder="Apenas números" onblur="pesquisacep(this.value);">
         </div>
         <div class="col-sm-4">
             <label for="logradouro" class="text">Endereço *</label>
@@ -148,7 +307,7 @@
             <input type="text" name="resp1" id="resp1" class="form-control form-control-sm" required="" maxlength="80">
         </div>
         <div class="col-sm-3">
-            <label for="resp2" class="text">Nome da mãe/pai *</label>
+            <label for="resp2" class="text">Nome da mãe/pai</label>
             <input type="text" name="resp2" id="resp2" class="form-control form-control-sm" maxlength="80">
         </div>
         <div class="col-sm-3">
@@ -160,73 +319,80 @@
             <input type="text" name="parentesco" id="parentesco" class="form-control form-control-sm" required maxlength="20">
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <label for="resp1" class="text">Telefone *</label>
+            <input type="text" name="telefone" id="telefone" class="form-control form-control-sm" required="" maxlength="15">
+        </div>
+        <div class="col-sm-3">
+            <label for="resp1" class="text">Mais um telefone</label>
+            <input type="text" name="telefone1" id="telefone1" class="form-control form-control-sm" required="" maxlength="15">
+        </div>
+    </div>
     <div class="row" style="margin-top: 1.2em;">
         <div class="col-sm-3" style="margin-top: 1.5em;">
             <label class="text">Pratica algum esporte?</label>
-            <input type="radio" value="1" name="esporte" id="esporte">Sim
-            <input type="radio" value="0" name="esporte" id="esporte">Não
+            <input type="radio" value="1" name="esporte" id="esporte" onclick="show(document.getElementById('esportePratica'));">Sim
+            <input type="radio" value="0" name="esporte" id="esporte" onclick="hide(document.getElementById('esportePratica'));">Não
         </div>
         <div class="col-sm-3">
-            <label class="text">Qual?</label>
-            <input type="text" name="esportePratica" id="esportePratica" class="form-control form-control-sm" maxlength="30">
-        </div>
-        <div class="col-sm-3">
-            <label class="text">Onde?</label>
-            <input type="text" name="localEsporte" id="localEsporte" class="form-control form-control-sm" maxlength="30">
+            <label class="text">Qual? E onde?</label>
+            <input type="text" name="esportePratica" id="esportePratica" disabled="true" class="form-control form-control-sm" maxlength="30">
         </div>
     </div>
     <div class="row" style="margin-top: 1.2em;">
         <div class="col-sm-4" style="margin-top: 1.5em;">
             <label class="text">Apresenta alguma deficiência?</label>
-            <input type="radio" value="1" name="deficiencia" id="deficiencia">Sim
-            <input type="radio" value="0" name="deficiencia" id="deficiencia">Não
+            <input type="radio" value="1" name="deficiencia" id="deficiencia" onclick="show(document.getElementById('qualDeficiencia'));">Sim
+            <input type="radio" value="0" name="deficiencia" id="deficiencia" onclick="hide(document.getElementById('qualDeficiencia'));">Não
         </div>
         <div class="col-sm-3">
             <label class="text">Qual?</label>
-            <input type="text" name="qualDeficiencia" id="qualDeficiencia" class="form-control form-control-sm" maxlength="30">
+            <input type="text" name="qualDeficiencia" id="qualDeficiencia" disabled="true" class="form-control form-control-sm" maxlength="30">
         </div>
     </div>
     <div class="row" style="margin-top: 1.2em;">
         <div class="col-sm-3" style="margin-top: 1.5em;">
             <label class="text">Usa algum medicamento?</label>
-            <input type="radio" value="1" name="medicamentos" id="medicamentos">Sim
-            <input type="radio" value="0" name="medicamentos" id="medicamentos">Não
+            <input type="radio" value="1" name="medicamentos" id="medicamentos" onclick="show(document.getElementById('qualMedicamento'));">Sim
+            <input type="radio" value="0" name="medicamentos" id="medicamentos" onclick="hide(document.getElementById('qualMedicamento'));">Não
         </div>
         <div class="col-sm-3">
             <label class="text">Qual(is)?</label>
-            <input type="text" name="qualMedicamento" id="qualMedicamento" class="form-control form-control-sm" maxlength="60">
+            <input type="text" name="qualMedicamento" id="qualMedicamento" disabled="true" class="form-control form-control-sm" maxlength="60">
         </div>
     </div>
     <div class="row" style="margin-top: 1.2em;">
         <div class="col-sm-3" style="margin-top: 1.5em;">
             <label class="text">Possui convênio médico?</label>
-            <input type="radio" value="1" name="convenio" id="convenio">Sim
-            <input type="radio" value="0" name="convenio" id="convenio">Não
+            <input type="radio" value="1" name="convenio" id="convenio" onclick="show(document.getElementById('qualConvenio'));">Sim
+            <input type="radio" value="0" name="convenio" id="convenio" onclick="hide(document.getElementById('qualConvenio'));">Não
         </div>
         <div class="col-sm-3">
             <label class="text">Qual?</label>
-            <input type="text" name="qualConvenio" id="qualConvenio" class="form-control form-control-sm" maxlength="30">
+            <input type="text" name="qualConvenio" id="qualConvenio" disabled="true" class="form-control form-control-sm" maxlength="30">
         </div>
+
     </div>
     <div class="row" style="margin-top: 1.2em;">
         <div class="col-sm-6" style="margin-top: 1.5em;">
             <label class="text">Está autorizado a realizar atividades físicas?</label>
-            <input type="radio" value="1" name="atividades" id="atividades">Sim
-            <input type="radio" value="0" name="atividades" id="atividades">Não
+            <input type="radio" value="Sim" name="atividades" id="atividades">Sim
+            <input type="radio" value="Não" name="atividades" id="atividades">Não
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <label class="text">Modalidade que irá concorrer</label>
-            <select name="modalidade" id="modalidade" class="form-control form-control-sm" required="">
+            <label class="text">Modalidade MASCULINA que irá concorrer</label>
+            <select name="modalidadeMasculina" id="modalidadeMasculina" disabled="true" class="form-control form-control-sm" required="">
                 <option value="null" selected disabled>-- Selecione --</option>
             </select>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <label class="text">Modalidade que irá concorrer</label>
-            <select name="modalidade" id="modalidade" class="form-control form-control-sm" required="">
+            <label class="text">Modalidade FEMININA que irá concorrer</label>
+            <select name="modalidadeFeminina" id="modalidadeFeminina" disabled="true" class="form-control form-control-sm" required="">
                 <option value="null" selected disabled>-- Selecione --</option>
             </select>
         </div>
@@ -236,10 +402,10 @@
 
     <div class="row">
         <div class="col-sm-2 offset-sm-4">
-            <input type="submit" value="Cadastrar" class="button button2" onclick="">
+            <input type="button" value="Cadastrar" class="button button2" onclick="valida();">
         </div>
         <div class="col-sm-2">
-            <input type="reset" value="Limpar" class="button button1" onclick="">
+            <input type="reset" value="Limpar" class="button button1">
         </div>
     </div>
     </form>

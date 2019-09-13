@@ -16,7 +16,7 @@ padding:0;
     include('include/security.php');
     include('include/connect.php');
 
-    $select = "SELECT DATE_FORMAT (timestamp, '%d/%m/%Y %H:%i') as hora, nome, rg, sexo, 
+    $select = "SELECT id_nome as id, DATE_FORMAT (timestamp, '%d/%m/%Y %H:%i') as hora, nome, rg, sexo, 
     DATE_FORMAT(data_nasc, '%d/%m/%Y') as data_nasc, celO, telO, nomeR, deficiencia, p_opc_masc, 
     p_opc_fem FROM cad_NovoEafi";
 
@@ -73,11 +73,13 @@ padding:0;
                     <th scope="col">Opc. masculina</th>
                     <th scope="col">Opc. feminina</th>
                     <th scope="col">Assinatura</th>
+                    <th scope="col">Editar</th>
                 </tr>
             </thead>
             <tbody>
     <?php
     while($dados = mysqli_fetch_assoc($query)) {
+        $id = $dados['id'];
         $hora = $dados['hora'];
         $nome = utf8_encode($dados['nome']);
         $rg = $dados['rg']; 
@@ -103,6 +105,7 @@ padding:0;
       <td><?php echo $p_opc_masc; ?></td>
       <td><?php echo $p_opc_fem; ?></td>
       <td style="margin-top: 3em;">________________________________</td>
+      <td><a href="editar.php?id=<?php echo $id; ?>">Editar</a></td>
     </tr>
         <?php
     }

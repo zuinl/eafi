@@ -25,24 +25,25 @@ padding:0;
         
         $select .= " WHERE p_opc_masc LIKE '$modalidade' OR p_opc_fem LIKE '$modalidade'";
     } else if (isset($_GET['sexo'])) {
-        $sexo = '%'.$_GET['sexo'].'%';
 
-        $select .= " WHERE sexo LIKE '$sexo'";
+        if($_GET['sexo'] == 'Masculino') $select = " WHERE sexo LIKE 'Masculino' OR sexo LIKE 'M'";
+        else $select = " WHERE sexo LIKE 'Masculino' OR sexo LIKE 'M'";
+        
     } else if (isset($_GET['modalidade_sexo'])) {
         $modalidade_sexo = $_GET['modalidade_sexo'];
 
-        if($modalidade_sexo == "Volei-F") $select .= " WHERE sexo LIKE 'Feminino' AND p_opc_fem LIKE 'Volei'"; 
-        if($modalidade_sexo == "Volei-M") $select .= " WHERE sexo LIKE 'Masculino' AND p_opc_masc LIKE 'Volei'"; 
-        if($modalidade_sexo == "Futsal-F") $select .= " WHERE sexo LIKE 'Feminino' AND p_opc_fem LIKE 'Futsal'"; 
-        if($modalidade_sexo == "Futsal-M") $select .= " WHERE sexo LIKE 'Masculino' AND p_opc_masc LIKE 'Futsal'"; 
-        if($modalidade_sexo == "Judo-F") $select .= " WHERE sexo LIKE 'Feminino' AND p_opc_fem LIKE 'Judo'"; 
-        if($modalidade_sexo == "Judo-M") $select .= " WHERE sexo LIKE 'Masculino' AND p_opc_masc LIKE 'Judo'"; 
-        if($modalidade_sexo == "TM-M") $select .= " WHERE sexo LIKE 'Masculino' AND p_opc_masc LIKE 'Tenis de mesa'"; 
-        if($modalidade_sexo == "TM-F") $select .= " WHERE sexo LIKE 'Feminino' AND p_opc_fem LIKE 'Tenis de mesa'"; 
-        if($modalidade_sexo == "Atletismo-M") $select .= " WHERE sexo LIKE 'Masculino' AND p_opc_masc LIKE 'Atletismo'"; 
-        if($modalidade_sexo == "Atletismo-F") $select .= " WHERE sexo LIKE 'Feminino' AND p_opc_fem LIKE 'Atletismo'"; 
-        if($modalidade_sexo == "Basquete-F") $select .= " WHERE sexo LIKE 'Feminino' AND p_opc_fem LIKE 'Basquete'"; 
-        if($modalidade_sexo == "Handebol-M") $select .= " WHERE sexo LIKE 'Masculino' AND p_opc_masc LIKE 'Handebol'"; 
+        if($modalidade_sexo == "Volei-F") $select .= " WHERE (sexo LIKE 'Feminino' OR sexo LIKE 'F') AND p_opc_fem LIKE 'Volei'"; 
+        if($modalidade_sexo == "Volei-M") $select .= " WHERE (sexo LIKE 'Masculino' OR sexo LIKE 'M') AND p_opc_masc LIKE 'Volei'"; 
+        if($modalidade_sexo == "Futsal-F") $select .= " WHERE (sexo LIKE 'Feminino' OR sexo LIKE 'F') AND p_opc_fem LIKE 'Futsal'"; 
+        if($modalidade_sexo == "Futsal-M") $select .= " WHERE (sexo LIKE 'Masculino' OR sexo LIKE 'M') AND p_opc_masc LIKE 'Futsal'"; 
+        if($modalidade_sexo == "Judo-F") $select .= " WHERE (sexo LIKE 'Feminino' OR sexo LIKE 'F') AND p_opc_fem LIKE 'Judo'"; 
+        if($modalidade_sexo == "Judo-M") $select .= " WHERE (sexo LIKE 'Masculino' OR sexo LIKE 'M') AND p_opc_masc LIKE 'Judo'"; 
+        if($modalidade_sexo == "TM-M") $select .= " WHERE (sexo LIKE 'Masculino' OR sexo LIKE 'M') AND p_opc_masc LIKE 'Tenis de mesa'"; 
+        if($modalidade_sexo == "TM-F") $select .= " WHERE (sexo LIKE 'Feminino' OR sexo LIKE 'F') AND p_opc_fem LIKE 'Tenis de mesa'"; 
+        if($modalidade_sexo == "Atletismo-M") $select .= " WHERE (sexo LIKE 'Masculino' OR sexo LIKE 'M') AND p_opc_masc LIKE 'Atletismo'"; 
+        if($modalidade_sexo == "Atletismo-F") $select .= " WHERE (sexo LIKE 'Feminino' OR sexo LIKE 'F') AND p_opc_fem LIKE 'Atletismo'"; 
+        if($modalidade_sexo == "Basquete-F") $select .= " WHERE (sexo LIKE 'Feminino' OR sexo LIKE 'F') AND p_opc_fem LIKE 'Basquete'"; 
+        if($modalidade_sexo == "Handebol-M") $select .= " WHERE (sexo LIKE 'Masculino' OR sexo LIKE 'M') AND p_opc_masc LIKE 'Handebol'"; 
     } else if(isset($_GET['all'])) {
         $select .= "";
     } else {
@@ -89,11 +90,11 @@ padding:0;
         $nomeR = utf8_encode($dados['nomeR']);
         $deficiencia = utf8_encode($dados['deficiencia']);
         $p_opc_masc = utf8_encode($dados['p_opc_masc']);
-            if($p_opc_masc == "Selecione" && $sexo == "Feminino") $p_opc_masc = "---";
-            if($p_opc_masc == "Selecione" && $sexo == "Masculino") $p_opc_masc = "Não informado";
+            if(($p_opc_masc == "Selecione" || $p_opc_masc == "") && $sexo == "Feminino") $p_opc_masc = "---";
+            if(($p_opc_masc == "Selecione" || $p_opc_masc == "") && $sexo == "Masculino") $p_opc_masc = "Não informado";
         $p_opc_fem = utf8_encode($dados['p_opc_fem']);
-            if($p_opc_fem == "Selecione" && $sexo == "Masculino") $p_opc_fem = "---";
-            if($p_opc_fem == "Selecione" && $sexo == "Feminino") $p_opc_fem = "Não informado";
+            if(($p_opc_fem == "Selecione" || $p_opc_fem == "") && $sexo == "Masculino") $p_opc_fem = "---";
+            if(($p_opc_fem == "Selecione" || $p_opc_fem == "") && $sexo == "Feminino") $p_opc_fem = "Não informado";
         ?>
         
     <tr>

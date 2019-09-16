@@ -130,6 +130,16 @@
             </div>
         </div>
 
+        <?php
+            if (isset($_SESSION['msg'])) {
+                ?>
+                <div class="alert alert-primary" role="alert">
+                    <?php echo $_SESSION['msg']; unset($_SESSION['msg']); ?>
+                </div>
+                <?php
+            }
+        ?>
+
         <hr class="hr-divide">
 
         <div class="row">

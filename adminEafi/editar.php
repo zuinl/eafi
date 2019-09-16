@@ -116,6 +116,7 @@ $parentesco = utf8_encode($dados['parentesco']);
 
         <div class="row" style="margin-top: 2em;">
             <div class="col-sm-3">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <input type="submit" value="Atualizar inscrição" class="btn btn-outline-primary">
             </div>
             </form>
